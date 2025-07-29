@@ -1,0 +1,36 @@
+.container {
+  border: solid 1px #ccc;
+  margin: 32px;
+  padding: 16px;
+}
+
+.object-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.category-container {
+  display: flex;
+}
+
+.category-tag {
+  color: blue;
+  border: solid 1px blue;
+  padding: 4px 8px;
+  margin: 4px;
+  font-weight: 400;
+  font-size: small;
+}
+
+.object-title {
+  font-weight: 500;
+}
+
+.object-content {
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  overflow: hidden;
+  margin-right: 30%;
+}
