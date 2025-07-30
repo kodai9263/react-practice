@@ -1,12 +1,10 @@
-import "../App.css"
+import classes from './Header.module.css';
 
 export default function Header() {
   return (
-    <>
-    <header className="header">
-      <a className="header-link" href="">Blog</a>
-      <a className="header-link" href="">お問い合わせ</a>
+    <header className={classes.header}>
+      <a className={classes.headerLink} href="">Blog</a>
+      <a className={classes.headerLink} href="">お問い合わせ</a>
     </header>
-    </>
   );
 }

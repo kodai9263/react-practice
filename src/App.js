@@ -1,13 +1,11 @@
-import './App.css';
 import Header from './components/Header';
-import { posts } from './data/posts';
-import Objects from './object/Objects';
+import Posts from './post/Posts';
 
 function App() {
   return (
     <>
-    <Header />
-    <Objects src={posts} />
+      <Header />
+      <Posts />
     </>
   );
 }
