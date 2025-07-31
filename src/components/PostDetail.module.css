@@ -12,3 +12,13 @@
 .postTitle {
   font-weight: 500;
 }
+
+.errorMessage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 32px;
+  color: #333;
+  font-weight: 600;
+}

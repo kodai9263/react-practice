@@ -1,14 +1,17 @@
 import { Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
 import PostDetail from './components/PostDetail';
+import Header from './components/Header';
 
 function App() {
   return (
-    <Routes>
-      <Route path='/' element={<Home />} />
-      <Route path='/post/:id' element={<PostDetail />} />
-    </Routes>
+    <>
+      <Header />
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/post/:id' element={<PostDetail />} />
+      </Routes>
+    </>
   );
 }
-
 export default App;

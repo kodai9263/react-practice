@@ -3,7 +3,6 @@ import { posts } from "../data/posts";
 import classes from "./PostDetail.module.css";
 import Categories from "../post/Categories";
 import FormatDate from "../post/FormatDate";
-import Header from "./Header";
 
 export default function PostDetail() {
 
@@ -11,9 +10,11 @@ export default function PostDetail() {
   const { id } = useParams();
   const post = posts.find((p) => p.id === Number(id));
 
+  // 記事が見つからない時の処理
+  if (!post) return <div className={classes.errorMessage}>記事が見つかりませんでした。</div>
+
   return (
     <>
-      <Header />
       <div className={classes.container}>
         <img src="https://placehold.jp/800x400.png"/>
         <div className={classes.dateCategoryContainer}>
