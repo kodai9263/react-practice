@@ -7,7 +7,7 @@ export default function PostsItem({ post }) {
 
   return (
     <>
-      <Link to={`/post/${post.id}`} className={classes.link}>
+      <Link to={`/posts/${post.id}`} className={classes.link}>
         <div className={classes.container}>
         <header className={classes.postHeader}>
           <FormatDate date={post.createdAt} />

@@ -1,22 +1,50 @@
 import { useParams } from "react-router-dom";
-import { posts } from "../data/posts";
 import classes from "./PostDetail.module.css";
 import Categories from "../post/Categories";
 import FormatDate from "../post/FormatDate";
+import { useEffect, useState } from "react";
 
 export default function PostDetail() {
 
   // URLからidを取得
   const { id } = useParams();
-  const post = posts.find((p) => p.id === Number(id));
 
-  // 記事が見つからない時の処理
-  if (!post) return <div className={classes.errorMessage}>記事が見つかりませんでした。</div>
+  // APIでpost詳細を取得
+  const [post, setPost] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetcher = async () => {
+      try {
+        const res = await fetch(`https://1hmfpsvto6.execute-api.ap-northeast-1.amazonaws.com/dev/posts/${id}`);
+        if (!res.ok) {
+          throw new Error("記事が見つかりませんでした。");
+        }
+        const data = await res.json();
+        setPost(data.post);
+      } catch (e) {
+        setError(e.message);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+      
+    fetcher();
+  }, [id]);
+
+  if (isLoading) {
+    return <div>読み込み中...</div>
+  }
+
+  if (error) {
+    return <div>{error}</div>
+  }
 
   return (
     <>
       <div className={classes.container}>
-        <img src="https://placehold.jp/800x400.png"/>
+        <img src={post.thumbnailUrl}/>
         <div className={classes.dateCategoryContainer}>
           <FormatDate date={post.createdAt}/>
           <Categories categories={post.categories}/>
