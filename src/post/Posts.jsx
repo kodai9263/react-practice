@@ -34,6 +34,10 @@ export default function Posts() {
     return <div>{error}</div>
   }
 
+  if (!posts) {
+    return <div>データが見つかりません。</div>
+  }
+
   return (
     <dl>
       {posts.map(elem => 

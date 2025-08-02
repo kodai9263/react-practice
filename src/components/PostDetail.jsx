@@ -10,7 +10,7 @@ export default function PostDetail() {
   const { id } = useParams();
 
   // APIでpost詳細を取得
-  const [post, setPost] = useState();
+  const [post, setPost] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -39,6 +39,10 @@ export default function PostDetail() {
 
   if (error) {
     return <div>{error}</div>
+  }
+
+  if (!post) {
+    return <div>記事が見つかりませんでした。</div>
   }
 
   return (
