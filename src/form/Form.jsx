@@ -26,23 +26,23 @@ export default function Form() {
   });
 
   const onSubmit = async (data) => {
-    const res = await fetch("https://1hmfpsvto6.execute-api.ap-northeast-1.amazonaws.com/dev/contacts",{
+    try {
+      const res = await fetch("https://1hmfpsvto6.execute-api.ap-northeast-1.amazonaws.com/dev/contacts",{
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        name: data.name,
-        email: data.email,
-        context: data.context
-      })
-    });
-    alert("送信しました");
-    reset();
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: data.name, email: data.email, context: data.context })
+      });
+      if (!res.ok) {
+        throw new Error("送信できませんでした。");
+      }
+      alert("送信しました");
+      reset();
+    } catch (e) {
+      alert(e.message);
+    }
   }
 
   const handleClear = () => reset();
-
 
   return (
     <div className={classes.container}>
@@ -52,8 +52,8 @@ export default function Form() {
         <Input id="email" type="text" label="メールアドレス" register={register} error={errors.email} disabled={isSubmitting} />
         <Textarea id="context" type="text" label="本文" rows="8" register={register} error={errors.context} disabled={isSubmitting} />
         <div className={classes.buttonContainer}>
-          <button type="submit" className={classes.submitButton}>送信</button>
-          <button type="button" onClick={handleClear} className={classes.clearButton}>クリア</button>
+          <button type="submit" disabled={isSubmitting} className={classes.submitButton}>送信</button>
+          <button type="button" disabled={isSubmitting} onClick={handleClear} className={classes.clearButton}>クリア</button>
         </div>
       </form>
     </div>
